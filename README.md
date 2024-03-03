@@ -12,7 +12,7 @@ Mrs. Maria wants to develop her business, and to achieve her goals she needs a b
 
 # Requirements
 
-Python 3.12
-Django 5.0.2
-psycopg2-binary 2.9.9
-pytz 2019.2
+- Python 3.12
+- Django 5.0.2
+- psycopg2-binary 2.9.9
+- pytz 2019.2
