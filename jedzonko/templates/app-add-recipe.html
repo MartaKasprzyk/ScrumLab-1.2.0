@@ -4,15 +4,25 @@
 
 {% block content %}
 <div class="dashboard-content border-dashed p-3 m-4 view-height">
-
+    <form method="POST">
+    {% csrf_token %}    
     <div class="mt-4 ml-4 mr-4">
         <div class="row border-bottom border-3">
             <div class="col"><h3 class="color-header text-uppercase">Nowy
                 przepis</h3></div>
+            <div class="col">
+                {% if messages %}
+                    <ul class="messagelist">
+                        {% for message in messages %}
+                            <li>{{ message.message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
             <div class="col d-flex justify-content-end mb-2">
                 <button type="submit"
                         class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
-                    Zapisz
+                    Wyślij
                 </button>
             </div>
         </div>
@@ -20,20 +30,20 @@
         <table class="table borderless">
             <tbody>
             <tr class="d-flex">
-                <th scope="row" class="col-2">Nazwa Przepisu</th>
+                <th scope="row" class="col-2">Nazwa przepisu</th>
                 <td class="col-7">
-                    <input class="w-100 p-1" value="">
+                    <input type="text" name="name" placeholder="Lasagne bolognese" class="w-100 p-1" value="">
                 </td>
             </tr>
             <tr class="d-flex">
                 <th scope="row" class="col-2">Opis przepisu</th>
-                <td class="col-7"><textarea class="w-100 p-1"
-                                            rows="5"></textarea></td>
+                <td class="col-7"><input type="text" name="description" placeholder="Najlepsza lasagne pod słońcem" class="w-100 p-1" value="">
+                </td>
             </tr>
             <tr class="d-flex">
-                <th scope="row" class="col-2">Przygotowani(minuty)</th>
+                <th scope="row" class="col-2">Czas przygotowania (minuty)</th>
                 <td class="col-3">
-                    <input class="p-1" type="number" value="">
+                    <input type="number" name="preparation_time" placeholder="90" class="p-1" type="number" value="">
                 </td>
             </tr>
             </tbody>
@@ -48,14 +58,15 @@
         </div>
         <div class="row d-flex">
             <div class="col-5 p-4">
-                <textarea class="w-100 p-1" rows="10"></textarea>
+                <textarea name="preparation_method" placeholder="Podsmaż cebulkę..." class="w-100 p-1" rows="10"></textarea>
             </div>
             <div class="col-2"></div>
 
             <div class="col-5 p-4">
-                <textarea class="w-100 p-1" rows="10"></textarea>
+                <textarea name="ingredients" placeholder="makaron, pomidorki, mielone..." class="w-100 p-1" rows="10"></textarea>
             </div>
         </div>
     </div>
+    </form>
 </div>
 {% endblock content %}
